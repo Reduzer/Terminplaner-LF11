@@ -1,7 +1,10 @@
 ﻿namespace Shared
 {
-	public class Termin
+	public class Termin : ATermin
 	{
+		public Termin(string sName) : base(sName)
+		{
 
+		}
 	}
 }

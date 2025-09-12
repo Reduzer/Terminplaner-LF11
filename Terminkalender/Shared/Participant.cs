@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shared
 {
-	public class WochenTermin : ATermin
+	public class Participant
 	{
-		private List<Termin> m_voTermineDerWoche;
-
-
-
 	}
 }
