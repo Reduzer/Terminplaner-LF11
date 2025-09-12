@@ -8,12 +8,18 @@ namespace Shared
 {
 	public abstract class ATermin
 	{
-		protected string sName;
+		public string sName { get; protected set; }
+		public DateTime oStartDate { get; protected set; }
+		public DateTime oEndDate { get; protected set; }
 
-		public string GetName()
+		public ATermin(string sName)
+		{
+			this.sName = sName;
+		}
+
+		public IEnumerable<object> GetGuests()
 		{
 		
 		}
-		public IEnumerable<object> GetGuests();
 	}
 }
