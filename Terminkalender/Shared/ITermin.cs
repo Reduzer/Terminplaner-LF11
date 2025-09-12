@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace Shared
 {
-	public interface ITermin
+	public abstract class ATermin
 	{
-		public string GetName();
+		protected string sName;
+
+		public string GetName()
+		{
+		
+		}
 		public IEnumerable<object> GetGuests();
 	}
 }
