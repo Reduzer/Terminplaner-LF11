@@ -5,6 +5,10 @@ namespace Datenbankanbindung
 {
 	public class DatabaseHandler
 	{
+		private const string c_sDatabaseName = "TerminCalender_LF11";
+		private const string c_sConenctionStringForDatabaseChecking = "server=(local)\\SQLEXPRESS;Trusted_Connection=yes";
+		private const string c_sCreateDatabaseString = "SELECT database_id FROM sys.databases WHERE Name = '{0}'";
+
 		private static DatabaseHandler instance;
 
 		private SqlConnectionStringBuilder m_oBuilder;
@@ -19,14 +23,13 @@ namespace Datenbankanbindung
 			m_oParticipantInteraction = new ParticipantInteraction(m_oBuilder);
 		}
 
-//TODO: FILL INFO FOR LOCAL SQLLITE DB
+//TODO: FILL INFO FOR LOCAL MSSQL DB
 		private void Init()
 		{
 			m_oBuilder = new SqlConnectionStringBuilder{
-				DataSource = "",
-				UserID = "",
-				Password = "",
-				InitialCatalog = ""
+				DataSource = c_sDatabaseName,
+				UserID = "TESTUSER",
+				Password = "TESTPASSWORD",
 			};
 
 			SetupDatabase();
@@ -34,7 +37,28 @@ namespace Datenbankanbindung
 
 		private void SetupDatabase()
 		{
-		
+			bool bSuccessChecking = false;
+			string sSqlCommand = string.Format(c_sCreateDatabaseString, c_sDatabaseName);
+
+			using(SqlConnection oConnection = new SqlConnection(c_sConenctionStringForDatabaseChecking)){
+				using(SqlCommand oCommand = new SqlCommand(sSqlCommand, oConnection)){
+					oConnection.Open();
+
+					object oResult = oCommand.ExecuteScalar();
+					
+					if(!(oResult == null)){
+						bSuccessChecking = true;
+					}
+
+					oConnection.Close();
+				}
+			}
+
+			//Check for existing database otherwise create the database and two tables
+			if (!bSuccessChecking /*Database does not exist*/) {
+				//Create
+
+			}
 		}
 
 		public static DatabaseHandler Instance
