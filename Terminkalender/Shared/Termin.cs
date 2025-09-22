@@ -4,6 +4,7 @@ namespace Shared
 {
 	public class Termin
 	{
+		public long nID { get; protected set; }
 		public string sName { get; protected set; }
 		public DateTime oStartDate { get; protected set; }
 		public DateTime oEndDate { get; protected set; }
@@ -12,7 +13,7 @@ namespace Shared
 		public Color oColor { get; private set; }
 		public bool bIsRepeating { get; protected set; }
 		public short? nRepititionInterval { get; protected set; }
-		public string? sNameForRepitition;
+		public string? sNameForRepitition { get; private set;}
 
 		public Termin(string sName)
 		{
@@ -48,7 +49,5 @@ namespace Shared
 		{
 			this.sName = sName;
 		}
-
-
 	}
 }
