@@ -41,11 +41,11 @@ namespace Shared
 			voParticipants.Add(oToAdd);
 		}
 
-		public void RemoveParticipant(Participant oToRemove) 
-		{ 
-			voParticipants.Remove(oToRemove); 
+		public void RemoveParticipant(Participant oToRemove)
+		{
+			voParticipants.Remove(oToRemove);
 		}
-		
+
 		public void ChangeName(string sName)
 		{
 			this.sName = sName;

@@ -13,7 +13,16 @@
 			<ColumnDefinition Width="80"/>
 			<ColumnDefinition Width="Auto"/>
 		</Grid.ColumnDefinitions>
-		
-		<Frame x:Name="NavFrame" Grid.Column="1"/>
+
+		<Grid Grid.Column="0">
+			<Button Name="Se"/>
+		</Grid>
+
+		<Frame x:Name="NavFrame" 
+					 Grid.Column="1" 
+					 HorizontalAlignment="Stretch" 
+					 VerticalAlignment="Stretch" 
+					 HorizontalContentAlignment="Stretch" 
+					 VerticalContentAlignment="Stretch"/>
 	</Grid>
 </Window>
