@@ -92,11 +92,7 @@
             <TextBlock Text="Von:" Margin="10,0,5,0" VerticalAlignment="Center" Foreground="White"/>
             
             <Border CornerRadius="5" BorderBrush="White" BorderThickness="1" Background="White" VerticalAlignment="Center">
-                <ComboBox x:Name="StartBox" Width="60" BorderThickness="0">
-                    <ComboBoxItem>ComboBox Item #1</ComboBoxItem>
-                    <ComboBoxItem IsSelected="True">ComboBox Item #2</ComboBoxItem>
-                    <ComboBoxItem>ComboBox Item #3</ComboBoxItem>
-                </ComboBox>
+                <ComboBox x:Name="StartBox" Width="60" BorderThickness="0"/>
             </Border>
 
             <TextBlock Text="Bis:" Margin="10,0,5,0" VerticalAlignment="Center" Foreground="White"/>
