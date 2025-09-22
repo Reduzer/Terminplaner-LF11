@@ -10,11 +10,11 @@
 
     <Page.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-            <GradientStop Color="#355C7D" Offset="0.0"/>
-            
-            <GradientStop Color="#6C5B7B" Offset="1.0"/>
-            
-            <GradientStop Color="#24243e" Offset="2.0"/>
+            <GradientStop Color="#FC466B" Offset="0.0"/>
+
+            <GradientStop Color="#3F5EFB" Offset="1.0"/>
+
+            <GradientStop Color="#f64f59" Offset="1.0"/>
         </LinearGradientBrush>
     </Page.Background>
 
@@ -58,22 +58,25 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
-        
+       
         <TextBlock Text="Neuen Termin anlegen" FontSize="20" FontWeight="Thin" Grid.Row="0" Foreground="White"/>
 
-        <!--Titel-->
+        <!--Titel, Wiederholung-->
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,10,0,0">
             
             <TextBlock Text="Titel:" Width="60" VerticalAlignment="Center" Foreground="White"/>
 
             <Border CornerRadius="5" BorderBrush="White" BorderThickness="1" Background="White">
-
                 <TextBox x:Name="TitleBox" Width="200" BorderThickness="0" Margin="1"/>
-                
             </Border>
-            
+
+            <TextBlock Text="Wiederholen:" VerticalAlignment="Center" Foreground="White" Margin="10,0,5,0" />
+
+            <Border CornerRadius="5" BorderBrush="White" BorderThickness="1" Background="White" >
+                <TextBox x:Name="RepeatBox" Width="50" BorderThickness="0" Margin="1"/>
+            </Border>
+
         </StackPanel>
         
         <!--Datum, Von:, Bis:-->
@@ -83,10 +86,9 @@
             <TextBlock Text="Datum:" Width="60" VerticalAlignment="Center" Foreground="White"/>
 
             <Border CornerRadius="5" BorderBrush="White" BorderThickness="1" Background="White" VerticalAlignment="Center">
-                <DatePicker x:Name="DatePicker" Width="150" BorderBrush="White" Margin="1"/>
+                <DatePicker x:Name="DatePicker" Width="140" BorderBrush="White" Margin="1"/>
             </Border>
             
-
             <TextBlock Text="Von:" Margin="10,0,5,0" VerticalAlignment="Center" Foreground="White"/>
             
             <Border CornerRadius="5" BorderBrush="White" BorderThickness="1" Background="White" VerticalAlignment="Center">
@@ -98,9 +100,7 @@
             <Border CornerRadius="5" BorderBrush="White" BorderThickness="1" Background="White" VerticalAlignment="Center">
                 <TextBox x:Name="EndBox" Width="60" ToolTip="HH:mm" Margin="1" BorderThickness="0"/>
             </Border>
-
             
-
         </StackPanel>
         
         <!--Teilnehmer-->
@@ -110,8 +110,7 @@
             <TextBlock Text="Teilnehmer:" VerticalAlignment="Center" Foreground="White"/>
 
             <Border CornerRadius="5" BorderBrush="White" BorderThickness="1" Background="White">
-                <TextBox x:Name="TeilnehmerBox" AcceptsReturn="True" Margin="1" BorderThickness="0" />
-
+                <TextBox x:Name="TeilnehmerBox" AcceptsReturn="True" Margin="1" BorderThickness="0"/>
             </Border>
 
         </StackPanel>
@@ -119,21 +118,22 @@
         <!--Notizen-->
 
         <StackPanel Grid.Row="4" Margin="0,10,0,0">
-            
+
             <TextBlock Text="Notizen:" Foreground="White"/>
             
             <Border CornerRadius="5" BorderBrush="White" BorderThickness="1" Background="White">
                 <TextBox x:Name="NotesBox" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Margin="1" BorderThickness="0"/>
             </Border>
-
+            
         </StackPanel>
-
+                
         <!--Buttons Speichern und Abbrechen-->
 
         <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
             <Button Content="Speichern" Width="80" Margin="0,0,10,0" Background="White" FontSize="10"/>
             <Button Content="Abbrechen" Width="80" Background="White" FontSize="10"/>
         </StackPanel>
+        
     </Grid>
 </Page>
 
