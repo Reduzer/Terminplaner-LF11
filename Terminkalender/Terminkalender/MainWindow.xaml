@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Terminkalender"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        Title="Terminkalender" 
+				Height="450" 
+				Width="850">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="80"/>
+			<ColumnDefinition Width="Auto"/>
+		</Grid.ColumnDefinitions>
+		
+		<Frame x:Name="NavFrame" Grid.Column="1"/>
+	</Grid>
 </Window>
