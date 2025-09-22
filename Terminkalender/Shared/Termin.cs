@@ -10,13 +10,15 @@ namespace Shared
 		public string sLocation { get; protected set; }
 		public List<Participant> voParticipants { get; protected set; }
 		public Color oColor { get; private set; }
-		public bool bIsRepeating { get; protected set; }
 		public short? nRepititionInterval { get; protected set; }
 		public string? sNameForRepitition;
 
-		public Termin(string sName)
+		public Termin(string sName, DateTime oStartDate, DateTime oEndDate, List<Participant> voParticipants)
 		{
 			this.sName = sName;
+			this.oStartDate = oStartDate;
+			this.oEndDate = oEndDate;
+			this.voParticipants = voParticipants;
 		}
 
 		public void SetColor(Color oColor)

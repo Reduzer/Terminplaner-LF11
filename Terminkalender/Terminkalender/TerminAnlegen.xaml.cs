@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shared;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,24 @@ namespace Terminkalender
         public TerminAnlegen()
         {
             InitializeComponent();
+        }
+
+        private void SavedClick(object sender, RoutedEventArgs e)
+        {
+            
+            String title = TitleBox.Text;
+            DateTime? date = DateTime.Parse(DatePicker.Text);
+            //Was ist mit Von und Bis
+            //TeilnehmerListe
+            String discription = DescriptionBox.Text;
+
+            if (title != String.Empty && date != null) {
+                MessageBox.Show("Titel, Wiederholung oder Datum sind null", "Info");
+                return;
+            }
+            //Termin neuerTermin = new Termin(title, date, );
+
+            
         }
     }
 }
