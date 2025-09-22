@@ -1,4 +1,4 @@
-﻿using Shared;
+using Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +24,16 @@ namespace Terminkalender
         public TerminAnlegen()
         {
             InitializeComponent();
-        }
+			Init();
+			}
+		private void Init(){
+			DateTime oStartTime = DateTime.Now.Date;
+
+			for(int i = 0; i < 96; i++){
+				StartBox.Items.Add(oStartTime.Add(TimeSpan.FromMinutes(15 * i)));
+				EndBox.Items.Add(oStartTime.Add(TimeSpan.FromMinutes(15 * i)));
+			}
+		}
 
         private void SavedClick(object sender, RoutedEventArgs e)
         {
