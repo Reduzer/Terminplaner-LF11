@@ -1,0 +1,63 @@
+﻿<Page x:Class="Terminkalender.TerminAnlegen"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Terminkalender"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="450"
+      Title="TerminAnlegen" Background="#2d2d2d">
+
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        
+        <TextBlock Text="Neuen Termin anlegen" FontSize="20" FontWeight="Bold" Grid.Row="0" Foreground="White"/>
+        
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,10,0,0">
+            
+                <TextBlock Text="Titel:" Width="60" VerticalAlignment="Center" Foreground="White"/>
+
+            <Border CornerRadius="5" BorderBrush="White" BorderThickness="1" Background="White">
+
+                <TextBox x:Name="TitleBox" Width="200"/>
+                
+            </Border>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,10,0,0">
+            
+                <TextBlock Text="Datum:" Width="60" VerticalAlignment="Center" Foreground="White"/>
+                <DatePicker x:Name="DatePicker" Width="150"/>
+            
+
+            <TextBlock Text="Von:" Margin="10,0,0,0" VerticalAlignment="Center" Foreground="White"/>
+            <Border CornerRadius="5" BorderBrush="White" BorderThickness="1" Background="White">
+                <TextBox x:Name="StartBox" Width="60" ToolTip="HH:mm" Margin="2" BorderThickness="0"/>
+            </Border>
+
+            <TextBlock Text="Bis:" Margin="10,0,0,0" VerticalAlignment="Center" Foreground="White"/>
+            <Border CornerRadius="5" BorderBrush="White" BorderThickness="1" Background="White">
+                <TextBox x:Name="EndBox" Width="60" ToolTip="HH:mm" Margin="2" BorderThickness="0"/>
+            </Border>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Margin="0,10,0,0">
+            <TextBlock Text="Notizen:" Foreground="White"/>
+            <TextBox x:Name="NotesBox" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+            <Button Content="Speichern" Width="80" Margin="0,0,10,0" />
+            <Button Content="Abbrechen" Width="80"/>
+        </StackPanel>
+    </Grid>
+</Page>
+
