@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using Terminkalender.Pages;
 
 namespace Terminkalender
 {
@@ -18,6 +19,11 @@ namespace Terminkalender
 		public void SetPage(Page nextPage)
 		{
 			NavFrame.Navigate(nextPage);
+		}
+
+		public void ShowDayInfo(TagesAnsicht oPageToDisplay)
+		{
+			FrameTaskView.Navigate(oPageToDisplay);
 		}
 	}
 }

@@ -21,8 +21,9 @@
 			CalendarDayButtonStyle="{DynamicResource CalendarCalendarDayButtonStyle}"
 			CalendarItemStyle="{DynamicResource CalendarCalendarItemStyle}"
 			VerticalAlignment="Stretch" 
-			HorizontalAlignment="Stretch">
-
+			HorizontalAlignment="Stretch"
+			SelectedDatesChanged="MontlyCalender_SelectedDatesChanged">
+			
 		</Calendar>
 	</Grid>
 </Page>

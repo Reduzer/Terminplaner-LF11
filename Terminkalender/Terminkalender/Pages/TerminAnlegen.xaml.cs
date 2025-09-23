@@ -55,7 +55,6 @@ namespace Terminkalender
 
 		private void SavedClick(object sender, RoutedEventArgs e)
 		{
-
 			String title = TitleBox.Text;
 			DateTime date = DateTime.Parse(DatePicker.Text);
 			DateTime startHour = DateTime.Parse(StartBox.Text);
