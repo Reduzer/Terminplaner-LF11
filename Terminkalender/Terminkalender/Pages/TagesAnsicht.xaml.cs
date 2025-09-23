@@ -1,28 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
 
 namespace Terminkalender.Pages
 {
-    /// <summary>
-    /// Interaction logic for TagesAnsicht.xaml
-    /// </summary>
-    public partial class TagesAnsicht : Page
-    {
-        public TagesAnsicht()
-        {
-            InitializeComponent();
-        }
-    }
+	/// <summary>
+	/// Interaction logic for TagesAnsicht.xaml
+	/// </summary>
+	public partial class TagesAnsicht : Page
+	{
+		private static TagesAnsicht _instance;
+
+		private DateTime _DateTime;
+		private DateOnly _DateOnly;
+
+		private TagesAnsicht()
+		{
+			InitializeComponent();
+		}
+
+		private TagesAnsicht(DateTime oSelectedDateTime, DateOnly oSelectedDate) 
+		{
+			this._DateTime = oSelectedDateTime;
+			this._DateOnly = oSelectedDate;
+		}
+
+		public static TagesAnsicht Instance 
+		{
+			get {
+				if (_instance == null) {
+					_instance = new TagesAnsicht();
+				}
+
+				return _instance;
+			}
+		}
+
+		public TagesAnsicht CreateNewPage(DateTime dateTime, DateOnly oDate) {
+			return new TagesAnsicht(dateTime, oDate);
+		}
+
+	}
 }

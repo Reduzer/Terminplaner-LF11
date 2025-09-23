@@ -19,7 +19,7 @@
             <RowDefinition Height="20*" />
             <RowDefinition Height="80*" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Style="{DynamicResource CalendarStyle1}">
+        <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="25*" />
                 <ColumnDefinition Width="50*" />

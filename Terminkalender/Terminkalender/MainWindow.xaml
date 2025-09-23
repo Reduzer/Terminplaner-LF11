@@ -31,11 +31,32 @@
 			<Button Style="{DynamicResource ButtonStyle1}" Name="ShowMonthly" Height="40" Margin="10,300,10,80" Content="Monatsansicht"/>
 		</Grid>
 
-		<Frame x:Name="NavFrame" 
-					 Grid.Column="1" 
-					 HorizontalAlignment="Stretch" 
-					 VerticalAlignment="Stretch" 
-					 HorizontalContentAlignment="Stretch" 
-					 VerticalContentAlignment="Stretch"/>
+		<Grid Grid.Column="1" >
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="5"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			
+			<Frame x:Name="NavFrame" 
+				 Grid.Column="0" 
+				 HorizontalAlignment="Stretch" 
+				 VerticalAlignment="Stretch" 
+				 HorizontalContentAlignment="Stretch" 
+				 VerticalContentAlignment="Stretch"/>
+
+			<GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch"/>
+
+			<Frame 
+				x:Name="FrameTaskView" 
+				 Grid.Column="2" 
+				 HorizontalAlignment="Stretch" 
+				 VerticalAlignment="Stretch" 
+				 HorizontalContentAlignment="Stretch" 
+				 VerticalContentAlignment="Stretch"/>
+
+		</Grid>
+		
+		
 	</Grid>
 </Window>

@@ -14,7 +14,7 @@
                             FontFamily="Verdana"
                             FontSize="20"
                             FontWeight="Bold"
-                            Foreground="#FF111111"
+                            Foreground="LightBlue"
                             Text="{Binding}" />
 						</DataTemplate>
 					</ControlTemplate.Resources>
@@ -28,7 +28,7 @@
                         BorderThickness="0"
                         CornerRadius="1">
 							<Border
-                            BorderBrush="Black"
+                            BorderBrush="White"
                             BorderThickness="0"
                             CornerRadius="1">
 								<Grid>
