@@ -16,14 +16,23 @@ namespace Terminkalender
 			NavFrame.Navigate(oStartingPage);
 		}
 
-		public void SetPage(Page nextPage)
-		{
-			NavFrame.Navigate(nextPage);
-		}
-
 		public void ShowDayInfo(TagesAnsicht oPageToDisplay)
 		{
+			FrameTaskView.Content = null;
+
 			FrameTaskView.Navigate(oPageToDisplay);
+		}
+
+		private void ShowWeekly_Click(object sender, RoutedEventArgs e)
+		{
+			WochenAnsicht oWeeklyView = new WochenAnsicht();
+			NavFrame.Navigate(oWeeklyView);
+		}
+
+		private void ShowMonthly_Click(object sender, RoutedEventArgs e)
+		{
+			MonatAnsicht oMonthlyView = new MonatAnsicht();
+			NavFrame.Navigate(oMonthlyView);
 		}
 	}
 }

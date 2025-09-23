@@ -7,7 +7,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" 
 			d:DesignWidth="450"
-      Title="TerminAnlegen" >
+      Title="TerminAnlegen"
+			ShowsNavigationUI="False">
 
     <Page.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">

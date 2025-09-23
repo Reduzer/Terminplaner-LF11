@@ -1,10 +1,8 @@
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Terminkalender.Pages
 {
-	/// <summary>
-	/// Interaction logic for TagesAnsicht.xaml
-	/// </summary>
 	public partial class TagesAnsicht : Page
 	{
 		private static TagesAnsicht _instance;
@@ -19,8 +17,12 @@ namespace Terminkalender.Pages
 
 		private TagesAnsicht(DateTime oSelectedDateTime, DateOnly oSelectedDate) 
 		{
+			InitializeComponent();
+
 			this._DateTime = oSelectedDateTime;
 			this._DateOnly = oSelectedDate;
+
+			TxtDate.Text = "Datum: " + _DateOnly.ToString();
 		}
 
 		public static TagesAnsicht Instance 
@@ -38,5 +40,9 @@ namespace Terminkalender.Pages
 			return new TagesAnsicht(dateTime, oDate);
 		}
 
+		private void CreateTerminButton_Click(object sender, System.Windows.RoutedEventArgs e)
+		{
+			
+		}
 	}
 }

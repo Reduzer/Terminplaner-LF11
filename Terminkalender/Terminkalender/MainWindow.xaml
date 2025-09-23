@@ -22,28 +22,29 @@
 		
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="120"/>
-			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
 
 		<Grid Grid.Column="0">
 			<Button Style="{DynamicResource ButtonStyle1}" Name="ShowDaily"  Height="40" Margin="10,80,10,300" Content="Tagesansicht"/>
-			<Button Style="{DynamicResource ButtonStyle1}" Name="ShowWeekly" Height="40" Margin="10,195,10,195" Content="Wochenansicht"/>
-			<Button Style="{DynamicResource ButtonStyle1}" Name="ShowMonthly" Height="40" Margin="10,300,10,80" Content="Monatsansicht"/>
+			<Button Style="{DynamicResource ButtonStyle1}" Name="ShowWeekly" Height="40" Margin="10,195,10,195" Content="Wochenansicht" Click="ShowWeekly_Click"/>
+			<Button Style="{DynamicResource ButtonStyle1}" Name="ShowMonthly" Height="40" Margin="10,300,10,80" Content="Monatsansicht" Click="ShowMonthly_Click"/>
 		</Grid>
 
 		<Grid Grid.Column="1" >
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*"/>
+				<ColumnDefinition MinWidth="490" Width="*"/>
 				<ColumnDefinition Width="5"/>
-				<ColumnDefinition Width="*"/>
+				<ColumnDefinition MinWidth="235" Width="*"/>
 			</Grid.ColumnDefinitions>
-			
+
 			<Frame x:Name="NavFrame" 
 				 Grid.Column="0" 
 				 HorizontalAlignment="Stretch" 
 				 VerticalAlignment="Stretch" 
 				 HorizontalContentAlignment="Stretch" 
-				 VerticalContentAlignment="Stretch"/>
+				 VerticalContentAlignment="Stretch"
+				 NavigationUIVisibility="Hidden"/>
 
 			<GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch"/>
 
@@ -52,11 +53,9 @@
 				 Grid.Column="2" 
 				 HorizontalAlignment="Stretch" 
 				 VerticalAlignment="Stretch" 
-				 HorizontalContentAlignment="Stretch" 
-				 VerticalContentAlignment="Stretch"/>
-
+				 HorizontalContentAlignment="Center" 
+				 VerticalContentAlignment="Center"
+				NavigationUIVisibility="Hidden"/>
 		</Grid>
-		
-		
 	</Grid>
 </Window>
