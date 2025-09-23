@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Shared;
+using System.Windows;
 using System.Windows.Controls;
 using Terminkalender.Pages;
 
@@ -33,6 +34,13 @@ namespace Terminkalender
 		{
 			MonatAnsicht oMonthlyView = new MonatAnsicht();
 			NavFrame.Navigate(oMonthlyView);
+		}
+
+		public void ShowCreateTermin(Termin oTermin)
+		{
+			FrameTaskView.Content = null;
+
+			//FrameTaskView.Navigate();
 		}
 	}
 }

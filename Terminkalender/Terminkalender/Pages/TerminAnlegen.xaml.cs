@@ -1,4 +1,5 @@
 using Shared;
+using System.Drawing;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,7 +11,16 @@ namespace Terminkalender
 	/// </summary>
 	public partial class TerminAnlegen : Page
 	{
-		public TerminAnlegen()
+		private string sName;
+		private DateTime oStartDate;
+		private DateTime oEndDate;
+		private string sLocation;
+		private List<Participant> voParticipants;
+		private Color oColor;
+		private short? nRepititionInterval;
+		private string? sNameForRepitition;
+
+		public TerminAnlegen(DateTime oDateTime)
 		{
 			InitializeComponent();
 			Init();
@@ -53,12 +63,8 @@ namespace Terminkalender
 			return vsNames;
 		}
 
-		private void SavedClick(object sender, RoutedEventArgs e)
+		private List<Participant> GetParticipants() 
 		{
-			String title = TitleBox.Text;
-			DateTime date = DateTime.Parse(DatePicker.Text);
-			DateTime startHour = DateTime.Parse(StartBox.Text);
-			DateTime endHour = DateTime.Parse(EndBox.Text);
 			List<Participant> participants = new List<Participant>();
 
 			foreach (String sTemp in GetParticipantsFromBox())
@@ -66,9 +72,19 @@ namespace Terminkalender
 				participants.Add(new Participant(sTemp));
 			}
 
-			String discription = DescriptionBox.Text;
+			return participants;
+		}
 
-			if (title == String.Empty && participants.Count == 0)
+		private void SavedClick(object sender, RoutedEventArgs e)
+		{
+			string sTitle = TitleBox.Text;
+			DateTime oEndDate = DateTime.Parse(DatePicker.Text);
+			TimeOnly oStartHour = TimeOnly.Parse(StartBox.Text);
+			TimeOnly oEndHour = TimeOnly.Parse(EndBox.Text);
+			List<Participant> participants = GetParticipants();
+			string discription = DescriptionBox.Text;
+
+			if (sTitle == String.Empty && participants.Count == 0)
 			{
 				MessageBox.Show("Titel, Wiederholung oder Datum sind null", "Info");
 				return;

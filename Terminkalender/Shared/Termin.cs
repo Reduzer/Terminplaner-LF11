@@ -10,49 +10,26 @@ namespace Shared
 		public string sLocation { get; protected set; }
 		public List<Participant> voParticipants { get; protected set; }
 		public Color oColor { get; private set; }
+		public bool bIsRepeating { get; protected set; }
 		public short? nRepititionInterval { get; protected set; }
 		public string? sNameForRepitition;
 
-		public Termin(string sName, DateTime oStartDate, DateTime oEndDate, List<Participant> voParticipants)
+		public Termin(DateTime oStartDateTime, DateOnly oStartDate) 
+		{
+			this.oStartDate = oStartDateTime;
+		}
+
+		public Termin(string sName, DateTime oStartDate, DateTime oEndDate, string sLocation, List<Participant> voParticipants, Color oColor, bool bIsRepeating ,short nRepetition, string sNameForRepetition)
 		{
 			this.sName = sName;
 			this.oStartDate = oStartDate;
 			this.oEndDate = oEndDate;
+			this.sLocation = sLocation;
 			this.voParticipants = voParticipants;
-		}
-
-		public Termin() { }
-
-		public void SetColor(Color oColor)
-		{
 			this.oColor = oColor;
+			this.bIsRepeating = bIsRepeating;
+			this.nRepititionInterval = nRepetition;
+			this.sNameForRepitition = sNameForRepetition;
 		}
-
-		public void ChangeStartDate(DateTime oStartDate)
-		{
-			this.oStartDate = oStartDate;
-		}
-
-		public void ChangeEndDate(DateTime oEndDate)
-		{
-			this.oEndDate = oEndDate;
-		}
-
-		public void AddParticipant(Participant oToAdd)
-		{
-			voParticipants.Add(oToAdd);
-		}
-
-		public void RemoveParticipant(Participant oToRemove)
-		{
-			voParticipants.Remove(oToRemove);
-		}
-
-		public void ChangeName(string sName)
-		{
-			this.sName = sName;
-		}
-
-
 	}
 }
