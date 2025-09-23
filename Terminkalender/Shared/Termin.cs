@@ -21,6 +21,8 @@ namespace Shared
 			this.voParticipants = voParticipants;
 		}
 
+		public Termin() { }
+
 		public void SetColor(Color oColor)
 		{
 			this.oColor = oColor;

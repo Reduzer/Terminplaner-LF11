@@ -8,13 +8,16 @@
     Title="TagesAnsicht"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    ShowsNavigationUI="False"
     mc:Ignorable="d">
 
-    <Page.Resources>
-        <ResourceDictionary Source="/ResourceDictonaries/MergedCalendar.xaml" />
-    </Page.Resources>
-
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush>
+                <GradientStop Offset="0.0" Color="#23074d" />
+                <GradientStop Offset="1.0" Color="#cc5333" />
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="20*" />
             <RowDefinition Height="80*" />
@@ -31,10 +34,30 @@
                 <RowDefinition Height="20*" />
             </Grid.RowDefinitions>
             <TextBlock
+                x:Name="TxtDate"
                 Grid.Row="1"
                 Grid.Column="1"
                 Background="Transparent"
                 Foreground="Black" />
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*" />
+                <ColumnDefinition Width="50*" />
+            </Grid.ColumnDefinitions>
+
+            <DataGrid
+                x:Name="DGTermine"
+                Grid.Column="0"
+                AutoGenerateColumns="True"
+                Background="Transparent"
+                CanUserAddRows="False"
+                CanUserDeleteRows="False"
+                GridLinesVisibility="All"
+                HeadersVisibility="Column"
+                IsReadOnly="True" />
+
+            <Frame Grid.Column="1" Source="\Pages\TerminAnlegen.xaml" />
         </Grid>
     </Grid>
 </Page>
