@@ -36,11 +36,11 @@ namespace Terminkalender
 			NavFrame.Navigate(oMonthlyView);
 		}
 
-		public void ShowCreateTermin(Termin oTermin)
+		public void ShowCreateTermin(DateOnly oDate)
 		{
 			FrameTaskView.Content = null;
 
-			//FrameTaskView.Navigate();
+			FrameTaskView.Navigate(new TerminAnlegen(oDate));
 		}
 	}
 }

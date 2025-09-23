@@ -6,8 +6,6 @@ namespace Terminkalender.Pages
 	public partial class TagesAnsicht : Page
 	{
 		private static TagesAnsicht _instance;
-
-		private DateTime _DateTime;
 		private DateOnly _DateOnly;
 
 		private TagesAnsicht()
@@ -15,11 +13,10 @@ namespace Terminkalender.Pages
 			InitializeComponent();
 		}
 
-		private TagesAnsicht(DateTime oSelectedDateTime, DateOnly oSelectedDate) 
+		private TagesAnsicht(DateOnly oSelectedDate) 
 		{
 			InitializeComponent();
 
-			this._DateTime = oSelectedDateTime;
 			this._DateOnly = oSelectedDate;
 
 			TxtDate.Text = "Datum: " + _DateOnly.ToString();
@@ -36,13 +33,15 @@ namespace Terminkalender.Pages
 			}
 		}
 
-		public TagesAnsicht CreateNewPage(DateTime dateTime, DateOnly oDate) {
-			return new TagesAnsicht(dateTime, oDate);
+		public TagesAnsicht CreateNewPage(DateOnly oDate) {
+			return new TagesAnsicht(oDate);
 		}
 
 		private void CreateTerminButton_Click(object sender, System.Windows.RoutedEventArgs e)
 		{
-			
+			DateOnly oSelectedDate = _DateOnly;
+			MainWindow oWindow = (MainWindow)App.Current.MainWindow;
+			oWindow.ShowCreateTermin(oSelectedDate);
 		}
 	}
 }

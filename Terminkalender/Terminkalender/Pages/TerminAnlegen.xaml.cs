@@ -3,14 +3,14 @@ using System.Drawing;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using Terminkalender.Pages;
 
 namespace Terminkalender
 {
-	/// <summary>
-	/// Interaktionslogik für TerminAnlegen.xaml
-	/// </summary>
 	public partial class TerminAnlegen : Page
 	{
+		private DateOnly oProvidedDate;
+
 		private string sName;
 		private DateTime oStartDate;
 		private DateTime oEndDate;
@@ -20,10 +20,12 @@ namespace Terminkalender
 		private short? nRepititionInterval;
 		private string? sNameForRepitition;
 
-		public TerminAnlegen(DateTime oDateTime)
+		public TerminAnlegen(DateOnly oDateTime)
 		{
 			InitializeComponent();
 			Init();
+
+			oProvidedDate = oDateTime;
 		}
 
 		private void Init()
@@ -77,21 +79,52 @@ namespace Terminkalender
 
 		private void SavedClick(object sender, RoutedEventArgs e)
 		{
-			string sTitle = TitleBox.Text;
-			DateTime oEndDate = DateTime.Parse(DatePicker.Text);
-			TimeOnly oStartHour = TimeOnly.Parse(StartBox.Text);
-			TimeOnly oEndHour = TimeOnly.Parse(EndBox.Text);
-			List<Participant> participants = GetParticipants();
-			string discription = DescriptionBox.Text;
+			Termin neuerTermin;
 
-			if (sTitle == String.Empty && participants.Count == 0)
-			{
-				MessageBox.Show("Titel, Wiederholung oder Datum sind null", "Info");
-				return;
+			try{
+				string sTitle = TitleBox.Text;
+				DateTime oEndDate = DateTime.Parse(DatePicker.Text);
+				TimeOnly oStartHour = TimeOnly.Parse(StartBox.Text);
+				TimeOnly oEndHour = TimeOnly.Parse(EndBox.Text);
+				string sLocation = OrtBox.Text;
+				short nRepetitionInterval = short.Parse(IntervalComboBox.Text);
+				List<Participant> voParticipants = GetParticipants();
+				string sDiscription = DescriptionBox.Text;
+				bool bIsRepeating = false;
+				
+				if(RepeatBox.Text == "Ja"){
+					bIsRepeating = true;
+				}
+
+				if ((sTitle == String.Empty) || (voParticipants.Count == 0))
+				{
+					MessageBox.Show("Titel, Wiederholung oder Datum sind null", "Info");
+					return;
+				}
+
+				neuerTermin = new Termin(
+					sTitle,
+					oStartDate,
+					oEndDate,
+					sLocation,
+					voParticipants,
+					oColor,
+					bIsRepeating,
+					nRepetitionInterval,
+					sTitle + "Repetition"
+					);
+			} catch (Exception){
+				MessageBox.Show("Es wurden Daten im Falschen Format angegeben");
 			}
-			Termin neuerTermin = new Termin(title, startHour, endHour, participants);
+			
+		}
 
+		private void CancelButton_Click(object sender, RoutedEventArgs e)
+		{
+			DateOnly oSelectedDate = oProvidedDate;
 
+			MainWindow oWindow = (MainWindow)App.Current.MainWindow;
+			oWindow.ShowDayInfo(TagesAnsicht.Instance.CreateNewPage(oSelectedDate));
 		}
 	}
 }

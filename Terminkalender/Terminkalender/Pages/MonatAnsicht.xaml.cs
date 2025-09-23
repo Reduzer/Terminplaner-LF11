@@ -15,12 +15,11 @@ namespace Terminkalender
 
 		private void MontlyCalender_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
 		{
-			DateTime oSelectedDateTime = MontlyCalender.SelectedDate.Value;
-			DateOnly oDate = DateOnly.FromDateTime(oSelectedDateTime);
+			DateOnly oDate = DateOnly.FromDateTime(MontlyCalender.SelectedDate.Value);
 
 			//Tagesübersicht per factory holen und übergeben
 			MainWindow oWindow = (MainWindow)App.Current.MainWindow;
-			oWindow.ShowDayInfo(TagesAnsicht.Instance.CreateNewPage(oSelectedDateTime, oDate));
+			oWindow.ShowDayInfo(TagesAnsicht.Instance.CreateNewPage(oDate));
 		}
 	}
 }
