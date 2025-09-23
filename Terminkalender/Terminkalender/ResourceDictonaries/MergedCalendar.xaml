@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="/ResourceDictonaries/Calendar.xaml"/>
+		<ResourceDictionary Source="/ResourceDictonaries/CalendarDayButton.xaml"/>
+		<ResourceDictionary Source="/ResourceDictonaries/CalendarItemStyle.xaml"/>
+		<ResourceDictionary Source="/ResourceDictonaries/CalenderButton.xaml"/>
+	</ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

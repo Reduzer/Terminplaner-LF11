@@ -6,16 +6,29 @@
         xmlns:local="clr-namespace:Terminkalender"
         mc:Ignorable="d"
         Title="Terminkalender" 
-				Height="450" 
+				Height="600" 
 				Width="850">
+	<Window.Resources>
+		<ResourceDictionary Source="/ResourceDictonaries/Buttons.xaml"/>
+	</Window.Resources>
+	
 	<Grid>
+		<Grid.Background>
+			<LinearGradientBrush>
+				<GradientStop Color="#23074d" Offset="0.0"/>
+				<GradientStop Color="#cc5333" Offset="1.0" />
+			</LinearGradientBrush>
+		</Grid.Background>
+		
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="80"/>
+			<ColumnDefinition Width="120"/>
 			<ColumnDefinition Width="Auto"/>
 		</Grid.ColumnDefinitions>
 
 		<Grid Grid.Column="0">
-			<Button Name="Se"/>
+			<Button Style="{DynamicResource ButtonStyle1}" Name="ShowDaily"  Height="40" Margin="10,80,10,300" Content="Tagesansicht"/>
+			<Button Style="{DynamicResource ButtonStyle1}" Name="ShowWeekly" Height="40" Margin="10,195,10,195" Content="Wochenansicht"/>
+			<Button Style="{DynamicResource ButtonStyle1}" Name="ShowMonthly" Height="40" Margin="10,300,10,80" Content="Monatsansicht"/>
 		</Grid>
 
 		<Frame x:Name="NavFrame" 
