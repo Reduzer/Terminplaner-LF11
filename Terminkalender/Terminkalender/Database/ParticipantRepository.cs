@@ -29,12 +29,18 @@ namespace Datenbankanbindung
 		public Participant AddTermin(Participant oParticipant)
 		{
 			EntityEntry<Participant> oEntry = _context.Participants.Add(oParticipant);
+			
+			_context.SaveChanges();
+
 			return oEntry.Entity;
 		}
 
 		public Participant UpdateTermin(Participant oParticipant)
 		{
 			EntityEntry<Participant> oEntry = _context.Participants.Update(oParticipant);
+
+			_context.SaveChanges();
+
 			return oEntry.Entity;
 		}
 
@@ -49,6 +55,9 @@ namespace Datenbankanbindung
 			if (GetByID(nID) == null) {
 				bResult = true;
 			}
+
+			_context.SaveChanges();
+
 			return bResult;
 		}
 	}

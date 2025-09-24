@@ -9,7 +9,7 @@ namespace Datenbankanbindung
 
 		public TerminRepository(TerminVerwalterContext oContext)
 		{
-			_context = oContext;
+			this._context = oContext;
 		}
 
 		public IEnumerable<Termin> GetTermine()
@@ -29,12 +29,14 @@ namespace Datenbankanbindung
 		public Termin AddTermin(Termin termine)
 		{
 			EntityEntry<Termin> oEntry = _context.Termine.Add(termine);
+			_context.SaveChanges();
 			return oEntry.Entity;
 		}
 
 		public Termin UpdateTermin(Termin termine)
 		{
 			EntityEntry<Termin> oEntry = _context.Termine.Update(termine);
+			_context.SaveChanges();
 			return oEntry.Entity;
 		}
 
@@ -49,6 +51,9 @@ namespace Datenbankanbindung
 			if (GetByID(nID) == null) {
 				bResult = true;
 			}
+
+			_context.SaveChanges();
+
 			return bResult;
 		}
 	}

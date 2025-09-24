@@ -20,18 +20,23 @@ namespace Terminkalender.Pages
 
 			this.oRepoHandler = oRepoHandler;
 
-			//IEnumerable<Termin> voTermine = oRepoHandler.Termin().GetTermine().Where( e => e.oStartDate == oSelectedDate);
-			//if (voTermine.Count() != 0) {
-			//	foreach (Termin oTermin in voTermine) {
-			//		oTerminList.Add(oTermin);			
-			//	}
-			//}
-
-			//DGTermine.ItemsSource = oTerminList;
-
 			this._DateOnly = oSelectedDate;
 
 			TxtDate.Text = "Datum: " + _DateOnly.ToString();
+
+			Init();
+
+			DGTermine.ItemsSource = oTerminList;
+		}
+
+		private void Init()
+		{
+			IEnumerable<Termin> voTermine = oRepoHandler.Termin().GetTermine().Where( e => e.sStartDate == _DateOnly.ToString("MM dd yyyy"));
+			if (voTermine.Count() != 0) {
+				foreach (Termin oTermin in voTermine) {
+					oTerminList.Add(oTermin);			
+				}
+			}
 		}
 
 		private void CreateTerminButton_Click(object sender, System.Windows.RoutedEventArgs e)

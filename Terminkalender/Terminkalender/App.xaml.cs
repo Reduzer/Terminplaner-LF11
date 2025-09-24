@@ -22,9 +22,8 @@ namespace Terminkalender
 			Terminkalender.App app = new Terminkalender.App();
 		  app.InitializeComponent();
 
-			using(TerminVerwalterContext oDbContext = oHost.Services.GetRequiredService<TerminVerwalterContext>()) { 
-				oDbContext.Database.EnsureCreated();
-			}
+			using TerminVerwalterContext oDbContext = oHost.Services.GetRequiredService<TerminVerwalterContext>();
+			oDbContext.Database.EnsureCreated();
 
 			app.MainWindow = oHost.Services.GetRequiredService<MainWindow>();
 			app.MainWindow.Visibility = Visibility.Visible;
@@ -36,18 +35,14 @@ namespace Terminkalender
 		{
 			 return Host.CreateDefaultBuilder(args)
 				.ConfigureServices((hostcontext, services) => {
-					services.AddSingleton<MainWindow>();
-					services.AddSingleton<IRepositoryHandler, RepositoryHandler>();
 					services.AddDbContext<TerminVerwalterContext>(
 						options => 
 						{
 							options.UseSqlite("Data Source=termine.db");
 							options.UseLazyLoadingProxies();
 						});
-					services.AddSingleton<RepositoryHandler>();
+					services.AddSingleton<MainWindow>();
 			});	
 		}
-
 	}
-
 }

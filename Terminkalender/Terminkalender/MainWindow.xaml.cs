@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Datenbankanbindung;
+using System.Windows;
 using System.Windows.Controls;
 using Terminkalender.Pages;
 using Terminkalender.ViewModel.Interfaces;
@@ -12,9 +13,9 @@ namespace Terminkalender
 	{
 		public IRepositoryHandler oRepoHandler;
 
-		public MainWindow(IRepositoryHandler oRepoHandler)
+		public MainWindow(TerminVerwalterContext oContext)
 		{
-			this.oRepoHandler = oRepoHandler;
+			oRepoHandler = new RepositoryHandler(oContext);
 
 			InitializeComponent();
 			Page oStartingPage = new MonatAnsicht(oRepoHandler);

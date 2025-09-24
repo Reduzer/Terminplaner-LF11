@@ -57,7 +57,7 @@
 				<DataGrid
 					Grid.Row="1"
           x:Name="DGTermine"
-          AutoGenerateColumns="false"
+          AutoGenerateColumns="true"
           Background="Transparent"
           CanUserAddRows="False"
           CanUserDeleteRows="False"

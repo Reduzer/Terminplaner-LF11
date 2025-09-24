@@ -9,14 +9,14 @@ namespace Terminkalender
 {
 	public partial class TerminAnlegen : Page
 	{
-		private DateOnly oProvidedDate;
+		private string sProvidedDate;
 
 		public TerminAnlegen(DateOnly oDateTime)
 		{
 			InitializeComponent();
 			Init();
 
-			oProvidedDate = oDateTime;
+			sProvidedDate = oDateTime.ToString("MM dd yyyy");
 		}
 
 		private void Init()
@@ -72,9 +72,9 @@ namespace Terminkalender
 
 			try {
 				string sTitle = TitleBox.Text;
-				DateOnly oEndDate = DateOnly.Parse(DatePicker.Text);
-				TimeOnly oStartHour = TimeOnly.Parse(StartBox.Text);
-				TimeOnly oEndHour = TimeOnly.Parse(EndBox.Text);
+				string sEndDate = DateOnly.Parse(DatePicker.Text).ToString("MM dd yyyy");
+				string sStartHour = TimeOnly.Parse(StartBox.Text).ToString("h:mm tt");
+				string sEndHour = TimeOnly.Parse(EndBox.Text).ToString("h:mm tt");
 				string sLocation = OrtBox.Text;
 				short nRepetitionInterval = 0;
 				List<Participant> voParticipants = GetParticipants();
@@ -88,10 +88,10 @@ namespace Terminkalender
 
 				neuerTermin = new Termin(
 					sTitle,
-					oProvidedDate,
-					oEndDate,
-					oStartHour,
-					oEndHour,
+					sProvidedDate,
+					sEndDate,
+					sStartHour,
+					sEndHour,
 					sLocation,
 					voParticipants,
 					bIsRepeating,
@@ -101,7 +101,7 @@ namespace Terminkalender
 				
 				MainWindow oWindow = (MainWindow)App.Current.MainWindow;
 				oWindow.oRepoHandler.Termin().AddTermin(neuerTermin);
-				oWindow.ShowDayInfo(new TagesAnsicht(oProvidedDate, oWindow.oRepoHandler));
+				oWindow.ShowDayInfo(new TagesAnsicht(DateOnly.Parse(sProvidedDate), oWindow.oRepoHandler));
 
 			} catch (Exception exception) {
 				MessageBox.Show(exception.Message);
@@ -110,7 +110,7 @@ namespace Terminkalender
 
 		private void CancelButton_Click(object sender, RoutedEventArgs e)
 		{
-			DateOnly oSelectedDate = oProvidedDate;
+			DateOnly oSelectedDate = DateOnly.Parse(sProvidedDate);
 
 			MainWindow oWindow = (MainWindow)App.Current.MainWindow;
 			oWindow.ShowDayInfo(new TagesAnsicht(oSelectedDate, oWindow.oRepoHandler));

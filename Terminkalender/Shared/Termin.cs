@@ -6,10 +6,10 @@ namespace Shared
 	{
 		public long nID { get; set; }
 		public string? sName { get; protected set; }
-		public DateOnly oStartDate { get; protected set; }
-		public DateOnly oEndDate { get; protected set; }
-		public TimeOnly oStarTime { get; protected set; }
-		public TimeOnly oEndTime { get; protected set; }
+		public string sStartDate { get; protected set; }
+		public string sEndDate { get; protected set; }
+		public string sStarTime { get; protected set; }
+		public string sEndTime { get; protected set; }
 		public string? sLocation { get; protected set; }
 		public List<long> vnParticipants { get; protected set; }
 		public bool bIsRepeating { get; protected set; }
@@ -18,13 +18,13 @@ namespace Shared
 
 		public Termin(){ }
 
-		public Termin(string sName, DateOnly oStartDate, DateOnly oEndDate, TimeOnly oStartTime, TimeOnly oEndTime, string sLocation, List<Participant> voParticipants, bool bIsRepeating, short nRepetition, string sNameForRepetition)
+		public Termin(string sName, string oStartDate, string oEndDate, string oStartTime, string oEndTime, string sLocation, List<Participant> voParticipants, bool bIsRepeating, short nRepetition, string sNameForRepetition)
 		{
 			this.sName = sName;
-			this.oStartDate = oStartDate;
-			this.oEndDate = oEndDate;
-			this.oStarTime = oStartTime;
-			this.oEndTime = oEndTime;
+			this.sStartDate = oStartDate;
+			this.sEndDate = oEndDate;
+			this.sStarTime = oStartTime;
+			this.sEndTime = oEndTime;
 			this.sLocation = sLocation;
 			this.bIsRepeating = bIsRepeating;
 			this.nRepititionInterval = nRepetition;
