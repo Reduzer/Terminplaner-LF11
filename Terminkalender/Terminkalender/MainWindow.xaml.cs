@@ -1,7 +1,7 @@
-﻿using Shared;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using Terminkalender.Pages;
+using Terminkalender.ViewModel.Interfaces;
 
 namespace Terminkalender
 {
@@ -10,10 +10,14 @@ namespace Terminkalender
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		public MainWindow()
+		public IRepositoryHandler oRepoHandler;
+
+		public MainWindow(IRepositoryHandler oRepoHandler)
 		{
+			this.oRepoHandler = oRepoHandler;
+
 			InitializeComponent();
-			Page oStartingPage = new MonatAnsicht();
+			Page oStartingPage = new MonatAnsicht(oRepoHandler);
 			NavFrame.Navigate(oStartingPage);
 		}
 
@@ -32,7 +36,7 @@ namespace Terminkalender
 
 		private void ShowMonthly_Click(object sender, RoutedEventArgs e)
 		{
-			MonatAnsicht oMonthlyView = new MonatAnsicht();
+			MonatAnsicht oMonthlyView = new MonatAnsicht(oRepoHandler);
 			NavFrame.Navigate(oMonthlyView);
 		}
 

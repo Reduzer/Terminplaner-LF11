@@ -2,7 +2,8 @@
 {
 	public class Participant
 	{
-		public string sName { get; private set; }
+		public long nID { get; set; }
+		public string? sName { get; set; }
 
 		public Participant(string sName)
 		{

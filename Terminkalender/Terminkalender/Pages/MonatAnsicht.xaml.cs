@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using Terminkalender.Pages;
+using Terminkalender.ViewModel.Interfaces;
 
 namespace Terminkalender
 {
@@ -8,7 +9,9 @@ namespace Terminkalender
 	/// </summary>
 	public partial class MonatAnsicht : Page
 	{
-		public MonatAnsicht()
+		private IRepositoryHandler oRepoHandler;
+
+		public MonatAnsicht(IRepositoryHandler oRepoHandler)
 		{
 			InitializeComponent();
 		}
@@ -19,7 +22,7 @@ namespace Terminkalender
 
 			//Tagesübersicht per factory holen und übergeben
 			MainWindow oWindow = (MainWindow)App.Current.MainWindow;
-			oWindow.ShowDayInfo(TagesAnsicht.Instance.CreateNewPage(oDate));
+			oWindow.ShowDayInfo(new TagesAnsicht(oDate, oWindow.oRepoHandler));
 		}
 	}
 }

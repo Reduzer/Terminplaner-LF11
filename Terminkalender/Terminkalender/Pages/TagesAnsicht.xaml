@@ -57,13 +57,13 @@
 				<DataGrid
 					Grid.Row="1"
           x:Name="DGTermine"
-          AutoGenerateColumns="True"
+          AutoGenerateColumns="false"
           Background="Transparent"
           CanUserAddRows="False"
           CanUserDeleteRows="False"
           GridLinesVisibility="All"
           HeadersVisibility="Column"
-          IsReadOnly="True" />
+          IsReadOnly="True"/>
 
 					<Button Style="{DynamicResource ButtonStyle1}" Grid.Row="2" Name="CreateTerminButton" Click="CreateTerminButton_Click" Content="Termin anlegen" Width="100"></Button>
         </Grid>

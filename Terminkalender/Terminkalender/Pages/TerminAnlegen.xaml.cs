@@ -11,15 +11,6 @@ namespace Terminkalender
 	{
 		private DateOnly oProvidedDate;
 
-		private string sName;
-		private DateTime oStartDate;
-		private DateTime oEndDate;
-		private string sLocation;
-		private List<Participant> voParticipants;
-		private Color oColor;
-		private short? nRepititionInterval;
-		private string? sNameForRepitition;
-
 		public TerminAnlegen(DateOnly oDateTime)
 		{
 			InitializeComponent();
@@ -30,12 +21,15 @@ namespace Terminkalender
 
 		private void Init()
 		{
-			DateTime oStartTime = DateTime.Now.Date;
+			TimeOnly oStartTime = TimeOnly.MinValue;
 
-			for (int i = 0; i < 96; i++)
-			{
+			for (int i = 0; i < 96; i++) {
 				StartBox.Items.Add(oStartTime.Add(TimeSpan.FromMinutes(15 * i)));
 				EndBox.Items.Add(oStartTime.Add(TimeSpan.FromMinutes(15 * i)));
+			}
+
+			for (int i = 0; i < 14; i++) {
+				IntervalComboBox.Items.Add(i.ToString());
 			}
 		}
 
@@ -46,16 +40,12 @@ namespace Terminkalender
 			List<string> vsNames = new List<string>();
 			StringBuilder sb = new StringBuilder();
 
-			for (int i = 0; i < sBaseString.Length; i++)
-			{
-				if (sBaseString[i] == ' ')
-				{
+			for (int i = 0; i < sBaseString.Length; i++) {
+				if (sBaseString[i] == ' ') {
 					continue;
-				} else if (sBaseString[i] != ',')
-				{
+				} else if (sBaseString[i] != ',') {
 					sb.Append(sBaseString[i]);
-				} else
-				{
+				} else {
 					vsNames.Add(sb.ToString());
 					sb.Clear();
 				}
@@ -65,12 +55,11 @@ namespace Terminkalender
 			return vsNames;
 		}
 
-		private List<Participant> GetParticipants() 
+		private List<Participant> GetParticipants()
 		{
 			List<Participant> participants = new List<Participant>();
 
-			foreach (String sTemp in GetParticipantsFromBox())
-			{
+			foreach (String sTemp in GetParticipantsFromBox()) {
 				participants.Add(new Participant(sTemp));
 			}
 
@@ -81,42 +70,42 @@ namespace Terminkalender
 		{
 			Termin neuerTermin;
 
-			try{
+			try {
 				string sTitle = TitleBox.Text;
-				DateTime oEndDate = DateTime.Parse(DatePicker.Text);
+				DateOnly oEndDate = DateOnly.Parse(DatePicker.Text);
 				TimeOnly oStartHour = TimeOnly.Parse(StartBox.Text);
 				TimeOnly oEndHour = TimeOnly.Parse(EndBox.Text);
 				string sLocation = OrtBox.Text;
-				short nRepetitionInterval = short.Parse(IntervalComboBox.Text);
+				short nRepetitionInterval = 0;
 				List<Participant> voParticipants = GetParticipants();
 				string sDiscription = DescriptionBox.Text;
 				bool bIsRepeating = false;
-				
-				if(RepeatBox.Text == "Ja"){
-					bIsRepeating = true;
-				}
 
-				if ((sTitle == String.Empty) || (voParticipants.Count == 0))
-				{
-					MessageBox.Show("Titel, Wiederholung oder Datum sind null", "Info");
-					return;
+				if (RepeatBox.Text == "Ja") {
+					bIsRepeating = true;
+					nRepetitionInterval = short.Parse(IntervalComboBox.Text);
 				}
 
 				neuerTermin = new Termin(
 					sTitle,
-					oStartDate,
+					oProvidedDate,
 					oEndDate,
+					oStartHour,
+					oEndHour,
 					sLocation,
 					voParticipants,
-					oColor,
 					bIsRepeating,
 					nRepetitionInterval,
-					sTitle + "Repetition"
+					sTitle
 					);
-			} catch (Exception){
-				MessageBox.Show("Es wurden Daten im Falschen Format angegeben");
+				
+				MainWindow oWindow = (MainWindow)App.Current.MainWindow;
+				oWindow.oRepoHandler.Termin().AddTermin(neuerTermin);
+				oWindow.ShowDayInfo(new TagesAnsicht(oProvidedDate, oWindow.oRepoHandler));
+
+			} catch (Exception exception) {
+				MessageBox.Show(exception.Message);
 			}
-			
 		}
 
 		private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -124,7 +113,7 @@ namespace Terminkalender
 			DateOnly oSelectedDate = oProvidedDate;
 
 			MainWindow oWindow = (MainWindow)App.Current.MainWindow;
-			oWindow.ShowDayInfo(TagesAnsicht.Instance.CreateNewPage(oSelectedDate));
+			oWindow.ShowDayInfo(new TagesAnsicht(oSelectedDate, oWindow.oRepoHandler));
 		}
 	}
 }
