@@ -57,7 +57,7 @@
 					<TextBlock Text="Von:" Margin="10,0,5,0" VerticalAlignment="Center" Foreground="White"/>
 
 					<Border CornerRadius="5" BorderBrush="White" BorderThickness="1" Background="White" VerticalAlignment="Center">
-						<ComboBox x:Name="StartBox" Width="60" BorderThickness="0" IsEnabled="False"/>
+						<ComboBox x:Name="StartBox" Width="60" BorderThickness="0" IsEnabled="False" Margin="1"/>
 					</Border>
 
 					<TextBlock Text="Bis:" Margin="10,0,5,0" VerticalAlignment="Center" Foreground="White"/>
@@ -70,8 +70,8 @@
 
 				<StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,10,0,0">
 					<TextBlock Text="Wiederholen:" VerticalAlignment="Center" Foreground="White" Margin="0,0,5,0" />
-					<Border>
-						<ComboBox x:Name="RepeatBox" Width="50" BorderThickness="0" IsEnabled="False">
+                    <Border CornerRadius="5" BorderBrush="White" BorderThickness="1" Background="White" VerticalAlignment="Center">
+						<ComboBox x:Name="RepeatBox" Width="50" BorderThickness="0" IsEnabled="False" Margin="1">
 							<ComboBoxItem Content="Ja"/>
 							<ComboBoxItem Content="Nein"/>
 						</ComboBox>
@@ -79,7 +79,7 @@
 
 					<TextBlock  Text="Interval:" VerticalAlignment="Center" Foreground="White" Margin="10,0,5,0"/>
 					<Border CornerRadius="5" BorderBrush="White" BorderThickness="1" Background="White" >
-						<ComboBox Name="IntervalComboBox" Width="50" IsEnabled="False"/>
+						<ComboBox Name="IntervalComboBox" Width="50" IsEnabled="False" Margin="1"/>
 					</Border>
 				</StackPanel>
 

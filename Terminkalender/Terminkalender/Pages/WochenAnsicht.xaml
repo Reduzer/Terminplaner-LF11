@@ -8,7 +8,7 @@
       d:DesignHeight="450" 
 			d:DesignWidth="800"
       Title="WochenAnsicht"
-			ShowsNavigationUI="False">
+			ShowsNavigationUI="False" Background="Transparent">
 
 
     <Grid>
@@ -22,29 +22,29 @@
         <Border Grid.Row="0" BorderThickness="0,0,0,1" BorderBrush="Gray">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                    <GradientStop Color="#FC466B" Offset="0"/>
-                    <GradientStop Color="#3F5EFB" Offset="1"/>
+                    <GradientStop Color="#212121" Offset="0"/>
+                    <GradientStop Color="#212121" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
 
             <UniformGrid Columns="8">
-                <TextBlock Text="Monat" FontWeight="Bold" 
-                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Text="Montag" HorizontalAlignment="Center"/>
-                <TextBlock Text="Dienstag" HorizontalAlignment="Center"/>
-                <TextBlock Text="Mittwoch" HorizontalAlignment="Center"/>
-                <TextBlock Text="Donnerstag" HorizontalAlignment="Center"/>
-                <TextBlock Text="Freitag" HorizontalAlignment="Center"/>
-                <TextBlock Text="Samstag" HorizontalAlignment="Center"/>
-                <TextBlock Text="Sonntag" HorizontalAlignment="Center"/>
+                <TextBlock Text="Woche" FontWeight="Bold" 
+                           HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                <TextBlock Text="Montag" HorizontalAlignment="Center" Foreground="White"/>
+                <TextBlock Text="Dienstag" HorizontalAlignment="Center" Foreground="White"/>
+                <TextBlock Text="Mittwoch" HorizontalAlignment="Center" Foreground="White"/>
+                <TextBlock Text="Donnerstag" HorizontalAlignment="Center" Foreground="White"/>
+                <TextBlock Text="Freitag" HorizontalAlignment="Center" Foreground="White"/>
+                <TextBlock Text="Samstag" HorizontalAlignment="Center" Foreground="White"/>
+                <TextBlock Text="Sonntag" HorizontalAlignment="Center" Foreground="White"/>
             </UniformGrid>
         </Border>
 
         <Border Grid.ColumnSpan="6" Grid.RowSpan="6" Grid.Row="1">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                    <GradientStop Color="#3b3b3b" Offset="0"/>
-                    <GradientStop Color="#3b3b3b" Offset="1"/>
+                    <GradientStop Color="Transparent" Offset="0"/>
+                    <GradientStop Color="Transparent" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
 
