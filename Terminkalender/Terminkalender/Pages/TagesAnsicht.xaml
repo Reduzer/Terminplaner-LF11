@@ -31,7 +31,7 @@
             <ColumnDefinition Width="15*" />
         </Grid.ColumnDefinitions>
 
-        <Button Style="{DynamicResource ButtonStyle1}" Grid.Row="2" Grid.Column="1" Height="40" Name="CreateTerminButton" Click="CreateTerminButton_Click" Content="Termin anlegen" Width="100" HorizontalAlignment="Left">
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Row="2" Grid.Column="1" Height="40" Name="CreateTerminButton" Click="CreateTerminButton_Click" Content="Termin anlegen" Width="100" HorizontalAlignment="Center">
             
         </Button>
 
@@ -85,7 +85,11 @@
                   CanUserDeleteRows="False"
                   GridLinesVisibility="All"
                   HeadersVisibility="Column"
-                  IsReadOnly="True">
+                  AlternatingRowBackground="#2e2e2e"
+                  RowBackground="#2e2e2e"
+                  IsReadOnly="True"
+                  Foreground="White"
+                  BorderBrush="#212121">
 
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
@@ -101,9 +105,9 @@
 
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Binding="{Binding sName}" Width="60"/>
+                    <DataGridTextColumn Header="Name" Binding="{Binding sName}" Width="60" />
 
-                    <DataGridTextColumn Header="Von:" Binding="{Binding sStartTime}"  Width="40"/>
+                    <DataGridTextColumn Header="Von:" Binding="{Binding sStartTime}"  Width="40" />
 
                     <DataGridTextColumn Header="Bis:" Binding="{Binding sEndTime}" Width="40"/>
 
@@ -112,7 +116,7 @@
                     <DataGridTemplateColumn Header="Details">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Name="ShowDetailedView" Content="Details" Style="{DynamicResource ButtonStyle2}" Click="ShowDetailedView_Click"/>
+                                <Button Name="ShowDetailedView" Content="Details" Style="{DynamicResource ButtonStyle2}" Click="ShowDetailedView_Click" Foreground="White" BorderBrush="#212121"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -120,6 +124,7 @@
                 </DataGrid.Columns>
 
                 
+
 
             </DataGrid>
 
