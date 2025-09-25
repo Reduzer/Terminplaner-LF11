@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace Terminkalender.Pages
 {
-	/// <summary>
-	/// Interaction logic for DetailAnsichtTermin.xaml
-	/// </summary>
 	public partial class DetailAnsichtTermin : Page
 	{
 		private Termin m_oTerminToDisplay;
@@ -31,23 +28,51 @@ namespace Terminkalender.Pages
 			m_oTerminToDisplay = oTermin;
 
 			FillInfo();
+
+			DeactivateContent();
 		}
 
 		private void FillInfo() 
 		{
 			HeaderForAppointment.Text = m_oTerminToDisplay.sName;
-			DatePickerVon.Text = m_oTerminToDisplay.sStartDate;
+			RepeatBox.SelectedItem = m_oTerminToDisplay.bIsRepeating;
+			OrtBox.Text = m_oTerminToDisplay.sLocation;
+			StartBox.SelectedValue = m_oTerminToDisplay.sStartTime;
+			EndBox.SelectedValue = m_oTerminToDisplay.sEndTime;
+
+
+		}
+
+		private void DeactivateContent() 
+		{
+			Grid oGrid = ContentGrid;
+
+			foreach (UIElement oElement in oGrid.Children) {
+				oElement.IsEnabled = false;
+			}
+		}
+
+		private void ActivateContent() 
+		{
+			Grid oGrid = ContentGrid;
+
+			foreach (UIElement oElement in oGrid.Children) {
+				oElement.IsEnabled = true;
+			}
 		}
 
 		private void ButtonBack_Click(object sender, RoutedEventArgs e)
 		{
 			DateOnly oDate = DateOnly.Parse(m_oTerminToDisplay.sStartDate, CultureInfo.CreateSpecificCulture("en-US"));
+			MainWindow oMainWindow = (MainWindow)App.Current.MainWindow;
 
+			TagesAnsicht oTagesAnsicht = new TagesAnsicht(oDate, oMainWindow.oRepoHandler);
+			oMainWindow.ShowDayInfo(oTagesAnsicht);
 		}
 
 		private void ButtonEdit_Click(object sender, RoutedEventArgs e)
 		{
-
+			ActivateContent();
 		}
 	}
 }

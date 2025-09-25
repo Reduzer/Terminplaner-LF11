@@ -25,7 +25,7 @@
 			<TextBlock Text="Test" Name="HeaderForAppointment" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="35"/>
 		</Grid>
 
-		<Grid Grid.Row="1">
+		<Grid Name="ContentGrid" Grid.Row="1">
 			<Grid Margin="10">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto"/>
