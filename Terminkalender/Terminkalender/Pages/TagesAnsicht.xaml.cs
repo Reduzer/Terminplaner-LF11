@@ -2,6 +2,7 @@ using Datenbankanbindung;
 using Microsoft.Extensions.Hosting;
 using Shared;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using Terminkalender.ViewModel.Interfaces;
@@ -31,10 +32,13 @@ namespace Terminkalender.Pages
 
 		private void Init()
 		{
-			IEnumerable<Termin> voTermine = oRepoHandler.Termin().GetTermine().Where( e => e.sStartDate == _DateOnly.ToString("MM dd yyyy"));
+			IEnumerable<Termin> voTermine = oRepoHandler.Termin().GetTermine();
+
 			if (voTermine.Count() != 0) {
 				foreach (Termin oTermin in voTermine) {
-					oTerminList.Add(oTermin);			
+					if ((DateOnly.Parse(oTermin.sStartDate, CultureInfo.CreateSpecificCulture("en-US")) <= _DateOnly) && DateOnly.Parse(oTermin.sEndDate, CultureInfo.CreateSpecificCulture("en-US")) >= _DateOnly) {
+						oTerminList.Add(oTermin);
+					}
 				}
 			}
 		}

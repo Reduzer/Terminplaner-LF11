@@ -1,5 +1,6 @@
 using Shared;
 using System.Drawing;
+using System.Globalization;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,14 +10,26 @@ namespace Terminkalender
 {
 	public partial class TerminAnlegen : Page
 	{
+		CultureInfo oCI;
 		private string sProvidedDate;
 
-		public TerminAnlegen(DateOnly oDateTime)
+		public TerminAnlegen(string sDateTime)
 		{
 			InitializeComponent();
 			Init();
+			oCI = CultureInfo.CurrentUICulture;
 
-			sProvidedDate = oDateTime.ToString("MM dd yyyy");
+			sProvidedDate = sDateTime;
+		}
+
+		private DateOnly ToSystemDateFormat(string sGivenDate) 
+		{
+			return DateOnly.Parse(sGivenDate, oCI);
+		}
+
+		private TimeOnly ToSystemTimeFormat(string sGivenTime) 
+		{
+			return TimeOnly.Parse(sGivenTime, oCI);
 		}
 
 		private void Init()
@@ -72,7 +85,14 @@ namespace Terminkalender
 
 			try {
 				string sTitle = TitleBox.Text;
-				string sEndDate = DateOnly.Parse(DatePicker.Text).ToString("MM dd yyyy");
+
+				DateOnly oEndDate = DateOnly.Parse(DatePicker.Text);
+
+				if (oEndDate < DateOnly.Parse(sProvidedDate)) {
+					throw new Exception("Bitte gebe kein Enddatum an, welches vor dem Startdatum liegt!");
+				}
+
+				string sEndDate = oEndDate.ToString("MM/dd/yyyy");
 				string sStartHour = TimeOnly.Parse(StartBox.Text).ToString("h:mm tt");
 				string sEndHour = TimeOnly.Parse(EndBox.Text).ToString("h:mm tt");
 				string sLocation = OrtBox.Text;
@@ -101,7 +121,10 @@ namespace Terminkalender
 				
 				MainWindow oWindow = (MainWindow)App.Current.MainWindow;
 				oWindow.oRepoHandler.Termin().AddTermin(neuerTermin);
-				oWindow.ShowDayInfo(new TagesAnsicht(DateOnly.Parse(sProvidedDate), oWindow.oRepoHandler));
+
+				DateOnly oDateTime = DateOnly.Parse(sProvidedDate, CultureInfo.CreateSpecificCulture("en-US"));
+
+				oWindow.ShowDayInfo(new TagesAnsicht(oDateTime, oWindow.oRepoHandler));
 
 			} catch (Exception exception) {
 				MessageBox.Show(exception.Message);

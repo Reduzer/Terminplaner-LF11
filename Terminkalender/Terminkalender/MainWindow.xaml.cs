@@ -45,7 +45,7 @@ namespace Terminkalender
 		{
 			FrameTaskView.Content = null;
 
-			FrameTaskView.Navigate(new TerminAnlegen(oDate));
+			FrameTaskView.Navigate(new TerminAnlegen(oDate.ToString("MM/dd/yyyy")));
 		}
 	}
 }
