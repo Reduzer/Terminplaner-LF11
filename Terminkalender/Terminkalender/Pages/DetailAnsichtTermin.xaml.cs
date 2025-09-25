@@ -41,6 +41,10 @@ namespace Terminkalender.Pages
 			EndBox.SelectedValue = m_oTerminToDisplay.sEndTime;
 
 
+			//IEnumerable<Participant> voParticipants = null;
+			//foreach () {
+			//	TeilnehmerBox.Text += 
+			//}
 		}
 
 		private void DeactivateContent() 
@@ -73,6 +77,35 @@ namespace Terminkalender.Pages
 		private void ButtonEdit_Click(object sender, RoutedEventArgs e)
 		{
 			ActivateContent();
+
+			ButtonDelete.Visibility = Visibility.Hidden;
+			ButtonSave.Visibility = Visibility.Visible;
 		}
-	}
+
+		private void ButtonDelete_Click(object sender, RoutedEventArgs e)
+		{
+			MessageBoxResult oResult = MessageBox.Show("Möchtest du den Termin wirklich löschen?", "Löschen", MessageBoxButton.YesNo);
+			if (oResult == MessageBoxResult.Yes)
+			{
+				MainWindow oMainWindow = (MainWindow)App.Current.MainWindow;
+				oMainWindow.oRepoHandler.Termin().DeleteTermin(m_oTerminToDisplay.nID);
+				oMainWindow.ShowDayInfo(new TagesAnsicht(DateOnly.Parse(m_oTerminToDisplay.sStartDate, CultureInfo.CreateSpecificCulture("en-US")), oMainWindow.oRepoHandler));
+			}
+    }
+
+		private void SaveDataToObject() 
+		{
+			
+		}
+
+		private void ButtonSave_Click(object sender, RoutedEventArgs e)
+		{
+			SaveDataToObject();
+
+			MainWindow oMainWindow = (MainWindow)App.Current.MainWindow;
+			oMainWindow.oRepoHandler.Termin().UpdateTermin(m_oTerminToDisplay);
+
+			DeactivateContent();
+    }
+  }
 }

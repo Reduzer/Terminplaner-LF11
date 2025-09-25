@@ -89,6 +89,8 @@
 				Grid.Column="1"
 				AutoGenerateColumns="False"
 				Background="Transparent"
+				BorderBrush="#212121"
+				BorderThickness="2"
 				CanUserAddRows="False"
 				CanUserDeleteRows="False"
 				GridLinesVisibility="All"
