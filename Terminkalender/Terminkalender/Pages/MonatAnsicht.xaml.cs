@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Globalization;
+using System.Windows.Controls;
 using Terminkalender.Pages;
 using Terminkalender.ViewModel.Interfaces;
 
@@ -18,7 +19,8 @@ namespace Terminkalender
 
 		private void MontlyCalender_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
 		{
-			DateOnly oDate = DateOnly.FromDateTime(MontlyCalender.SelectedDate.Value);
+			string sDate = MontlyCalender.SelectedDate.Value.ToString("MM/dd/yyyy");
+			DateOnly oDate = DateOnly.Parse(sDate, CultureInfo.CreateSpecificCulture("en-US"));
 
 			//Tagesübersicht per factory holen und übergeben
 			MainWindow oWindow = (MainWindow)App.Current.MainWindow;

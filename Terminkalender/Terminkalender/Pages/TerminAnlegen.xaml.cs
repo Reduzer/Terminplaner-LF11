@@ -22,16 +22,6 @@ namespace Terminkalender
 			sProvidedDate = sDateTime;
 		}
 
-		private DateOnly ToSystemDateFormat(string sGivenDate) 
-		{
-			return DateOnly.Parse(sGivenDate, oCI);
-		}
-
-		private TimeOnly ToSystemTimeFormat(string sGivenTime) 
-		{
-			return TimeOnly.Parse(sGivenTime, oCI);
-		}
-
 		private void Init()
 		{
 			TimeOnly oStartTime = TimeOnly.MinValue;
@@ -86,13 +76,15 @@ namespace Terminkalender
 			try {
 				string sTitle = TitleBox.Text;
 
-				DateOnly oEndDate = DateOnly.Parse(DatePicker.Text);
+				string sEndDate = DateTime.Parse(DatePicker.Text).ToString("MM/dd/yyyy");
 
-				if (oEndDate < DateOnly.Parse(sProvidedDate)) {
+				DateOnly oEndDate = DateOnly.Parse(sEndDate, CultureInfo.CreateSpecificCulture("en-US"));
+
+				if (oEndDate < DateOnly.Parse(sProvidedDate, CultureInfo.CreateSpecificCulture("en-US"))) {
 					throw new Exception("Bitte gebe kein Enddatum an, welches vor dem Startdatum liegt!");
 				}
 
-				string sEndDate = oEndDate.ToString("MM/dd/yyyy");
+				sEndDate = oEndDate.ToString("MM/dd/yyyy");
 				string sStartHour = TimeOnly.Parse(StartBox.Text).ToString("h:mm tt");
 				string sEndHour = TimeOnly.Parse(EndBox.Text).ToString("h:mm tt");
 				string sLocation = OrtBox.Text;
@@ -133,7 +125,7 @@ namespace Terminkalender
 
 		private void CancelButton_Click(object sender, RoutedEventArgs e)
 		{
-			DateOnly oSelectedDate = DateOnly.Parse(sProvidedDate);
+			DateOnly oSelectedDate = DateOnly.Parse(sProvidedDate, CultureInfo.CreateSpecificCulture("en-US"));
 
 			MainWindow oWindow = (MainWindow)App.Current.MainWindow;
 			oWindow.ShowDayInfo(new TagesAnsicht(oSelectedDate, oWindow.oRepoHandler));

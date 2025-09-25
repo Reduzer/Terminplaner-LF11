@@ -1,4 +1,5 @@
 ﻿using Datenbankanbindung;
+using Shared;
 using System.Windows;
 using System.Windows.Controls;
 using Terminkalender.Pages;
@@ -46,6 +47,12 @@ namespace Terminkalender
 			FrameTaskView.Content = null;
 
 			FrameTaskView.Navigate(new TerminAnlegen(oDate.ToString("MM/dd/yyyy")));
+		}
+
+		public void ShowDetailedAppointmentView(Termin oTermin) 
+		{
+			DetailAnsichtTermin oDetailView = new DetailAnsichtTermin(oTermin);
+			FrameTaskView.Navigate(oDetailView);
 		}
 	}
 }

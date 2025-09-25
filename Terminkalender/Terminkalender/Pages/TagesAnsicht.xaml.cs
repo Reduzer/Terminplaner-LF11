@@ -2,6 +2,7 @@ using Datenbankanbindung;
 using Microsoft.Extensions.Hosting;
 using Shared;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
@@ -49,5 +50,13 @@ namespace Terminkalender.Pages
 			MainWindow oWindow = (MainWindow)App.Current.MainWindow;
 			oWindow.ShowCreateTermin(oSelectedDate);
 		}
-	}
+
+		private void ShowDetailedView_Click(object sender, RoutedEventArgs e)
+		{
+			Termin Caller = (Termin)DGTermine.CurrentItem;
+
+			MainWindow oWindow = (MainWindow)App.Current.MainWindow;
+			oWindow.ShowDetailedAppointmentView(Caller);
+    }
+  }
 }

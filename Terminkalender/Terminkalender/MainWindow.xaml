@@ -26,8 +26,7 @@
 		</Grid.ColumnDefinitions>
 
 		<Grid Grid.Column="0">
-			<Button Style="{DynamicResource ButtonStyle2}" Name="ShowDaily"  Height="40" Margin="10,80,10,300" Content="Tagesansicht"/>
-			<Button Style="{DynamicResource ButtonStyle1}" Name="ShowWeekly" Height="40" Margin="10,195,10,195" Content="Wochenansicht" Click="ShowWeekly_Click"/>
+			<Button Style="{DynamicResource ButtonStyle1}" Name="ShowWeekly" Height="40" Margin="10,80,10,300" Content="Wochenansicht" Click="ShowWeekly_Click"/>
 			<Button Style="{DynamicResource ButtonStyle1}" Name="ShowMonthly" Height="40" Margin="10,300,10,80" Content="Monatsansicht" Click="ShowMonthly_Click"/>
 		</Grid>
 
