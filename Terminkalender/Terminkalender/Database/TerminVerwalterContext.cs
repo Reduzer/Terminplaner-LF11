@@ -22,7 +22,7 @@ namespace Datenbankanbindung
 				entity.Property(e => e.sName);
 				entity.Property(e => e.sStartDate);
 				entity.Property(e => e.sEndDate);
-				entity.Property(e => e.sStarTime);
+				entity.Property(e => e.sStartTime);
 				entity.Property(e => e.sEndTime);
 				entity.Property(e => e.sLocation);
 				entity.Property(e => e.vnParticipants);

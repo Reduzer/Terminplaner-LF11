@@ -16,34 +16,57 @@
 	</Page.Resources>
 
 	<Grid Background="Transparent">
+        
 		<Grid.RowDefinitions>
             <RowDefinition Height="20*" />
             <RowDefinition Height="80*" />
+            <RowDefinition Height="20*" />
+            
+            
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15*" />
+            <ColumnDefinition Width="70*" />
+            <ColumnDefinition Width="15*" />
+        </Grid.ColumnDefinitions>
+
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Row="2" Grid.Column="1" Height="40" Name="CreateTerminButton" Click="CreateTerminButton_Click" Content="Termin anlegen" Width="100" HorizontalAlignment="Left">
+            
+        </Button>
+
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Row="2" Grid.Column="1" Height="40" Name="EinButton" Content="Ein Button" Width="100" HorizontalAlignment="Right">
+        
+        </Button>
+
+
+
+
+        <Grid Grid.Row="0" Grid.ColumnSpan="3">
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="25*" />
                 <ColumnDefinition Width="50*" />
                 <ColumnDefinition Width="25*" />
             </Grid.ColumnDefinitions>
+            
             <Grid.RowDefinitions>
-                <RowDefinition Height="20*" />
+                
                 <RowDefinition Height="60*" />
-                <RowDefinition Height="20*" />
+                
             </Grid.RowDefinitions>
 					
             <TextBlock
                 x:Name="TxtDate"
-                Grid.Row="1"
+                Grid.Row="0"
                 Grid.Column="1"
-								TextAlignment="Center"
-								
-								FontSize="48"
+				TextAlignment="Center"								
+				FontSize="40"
                 Background="Transparent"
                 Foreground="White"
-							/>
+				VerticalAlignment="Center"/>
         </Grid>
-		<Grid Grid.Row="1">
+		<Grid Grid.Row="1" Grid.Column="1">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="40"/>
 				<RowDefinition Height="*"/>
@@ -53,19 +76,61 @@
 			<TextBlock Grid.Row="0" TextAlignment="Center" FontSize="30" Foreground="White">
 				Termine an diesem Tag:	
 			</TextBlock>
-			
-				<DataGrid
-					Grid.Row="1"
-          x:Name="DGTermine"
-          AutoGenerateColumns="true"
-          Background="Transparent"
-          CanUserAddRows="False"
-          CanUserDeleteRows="False"
-          GridLinesVisibility="All"
-          HeadersVisibility="Column"
-          IsReadOnly="True"/>
 
-					<Button Style="{DynamicResource ButtonStyle1}" Grid.Row="2" Name="CreateTerminButton" Click="CreateTerminButton_Click" Content="Termin anlegen" Width="100"></Button>
+
+
+            <DataGrid
+                  Grid.Row="1"
+                  Grid.Column="1"
+                  x:Name="DGTermine"
+                  AutoGenerateColumns="False"
+                  Background="Transparent"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  GridLinesVisibility="All"
+                  HeadersVisibility="Column"
+                  IsReadOnly="True">
+
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#212121"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="Light"/>
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+
+                </DataGrid.ColumnHeaderStyle>
+
+
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding sName}" Width="60"/>
+
+                    <DataGridTextColumn Header="Von:" Binding="{Binding sStartTime}"  Width="40"/>
+
+                    <DataGridTextColumn Header="Bis:" Binding="{Binding sEndTime}" Width="40"/>
+
+                    <DataGridTextColumn Header="Beschreibung" Binding="{Binding sDescription}" Width="*" />
+                    
+                    <DataGridTemplateColumn Header="Details">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Details" Style="{DynamicResource ButtonStyle2}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+
+                
+
+            </DataGrid>
+
+            
+
+
+
         </Grid>
     </Grid>
 </Page>

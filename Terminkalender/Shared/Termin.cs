@@ -8,7 +8,7 @@ namespace Shared
 		public string? sName { get; protected set; }
 		public string sStartDate { get; protected set; }
 		public string sEndDate { get; protected set; }
-		public string sStarTime { get; protected set; }
+		public string sStartTime { get; protected set; }
 		public string sEndTime { get; protected set; }
 		public string? sLocation { get; protected set; }
 		public List<long> vnParticipants { get; protected set; }
@@ -23,7 +23,7 @@ namespace Shared
 			this.sName = sName;
 			this.sStartDate = oStartDate;
 			this.sEndDate = oEndDate;
-			this.sStarTime = oStartTime;
+			this.sStartTime = oStartTime;
 			this.sEndTime = oEndTime;
 			this.sLocation = sLocation;
 			this.bIsRepeating = bIsRepeating;
