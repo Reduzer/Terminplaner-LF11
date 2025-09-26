@@ -15,10 +15,11 @@ namespace Shared
 		public bool bIsRepeating { get; protected set; }
 		public short? nRepititionInterval { get; protected set; }
 		public string? sNameForRepitition;
+		public string? sDescription { get; protected set; }
 
 		public Termin(){ }
 
-		public Termin(string sName, string oStartDate, string oEndDate, string oStartTime, string oEndTime, string sLocation, List<Participant> voParticipants, bool bIsRepeating, short nRepetition, string sNameForRepetition)
+		public Termin(string sName, string oStartDate, string oEndDate, string oStartTime, string oEndTime, string sLocation, List<long> vnParticipants, bool bIsRepeating, short nRepetition, string sNameForRepetition, string sDescription)
 		{
 			this.sName = sName;
 			this.sStartDate = oStartDate;
@@ -29,12 +30,9 @@ namespace Shared
 			this.bIsRepeating = bIsRepeating;
 			this.nRepititionInterval = nRepetition;
 			this.sNameForRepitition = sNameForRepetition;
+			this.sDescription = sDescription;
 
-			this.vnParticipants = new List<long>();
-
-			foreach (Participant oParticipant in voParticipants) {
-				vnParticipants.Add(oParticipant.nID);
-			}
+			this.vnParticipants = vnParticipants;
 		}
 	}
 }

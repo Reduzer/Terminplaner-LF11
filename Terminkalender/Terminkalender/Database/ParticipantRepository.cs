@@ -12,7 +12,7 @@ namespace Datenbankanbindung
 			_context = oContext;
 		}
 
-		public IEnumerable<Participant> GetTermine()
+		public IEnumerable<Participant> GetParticipant()
 		{
 			IEnumerable<Participant> voParticipants = _context.Participants;
 
@@ -26,7 +26,7 @@ namespace Datenbankanbindung
 			return oParticipant;
 		}
 
-		public Participant AddTermin(Participant oParticipant)
+		public Participant AddParticipant(Participant oParticipant)
 		{
 			EntityEntry<Participant> oEntry = _context.Participants.Add(oParticipant);
 			
@@ -35,7 +35,7 @@ namespace Datenbankanbindung
 			return oEntry.Entity;
 		}
 
-		public Participant UpdateTermin(Participant oParticipant)
+		public Participant UpdateParticipant(Participant oParticipant)
 		{
 			EntityEntry<Participant> oEntry = _context.Participants.Update(oParticipant);
 
@@ -44,7 +44,7 @@ namespace Datenbankanbindung
 			return oEntry.Entity;
 		}
 
-		public bool DeleteTermin(long nID)
+		public bool DeleteParticipant(long nID)
 		{
 			bool bResult = false;
 

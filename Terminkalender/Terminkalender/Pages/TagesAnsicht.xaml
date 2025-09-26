@@ -37,7 +37,7 @@
 			Grid.Column="1"
 			Width="100"
 			Height="40"
-			HorizontalAlignment="Left"
+			HorizontalAlignment="Center"
 			Click="CreateTerminButton_Click"
 			Content="Termin anlegen"
 			Style="{DynamicResource ButtonStyle1}" />
@@ -80,9 +80,7 @@
 				TextAlignment="Center">
 				Termine an diesem Tag:
 			</TextBlock>
-
-
-
+			
 			<DataGrid
 				x:Name="DGTermine"
 				Grid.Row="1"

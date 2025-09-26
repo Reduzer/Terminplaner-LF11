@@ -34,17 +34,21 @@ namespace Terminkalender.Pages
 
 		private void FillInfo() 
 		{
+			MainWindow oWindow = (MainWindow)App.Current.MainWindow;
+
 			HeaderForAppointment.Text = m_oTerminToDisplay.sName;
 			RepeatBox.SelectedItem = m_oTerminToDisplay.bIsRepeating;
 			OrtBox.Text = m_oTerminToDisplay.sLocation;
 			StartBox.SelectedValue = m_oTerminToDisplay.sStartTime;
 			EndBox.SelectedValue = m_oTerminToDisplay.sEndTime;
+			DescriptionBox.Text = m_oTerminToDisplay.sDescription;
 
-
-			//IEnumerable<Participant> voParticipants = null;
-			//foreach () {
-			//	TeilnehmerBox.Text += 
-			//}
+			foreach (long nPersonID in m_oTerminToDisplay.vnParticipants) {
+				Participant oPerson = oWindow.oRepoHandler.Participant().GetByID(nPersonID);
+				if (oPerson != null) {
+					TeilnehmerBox.Text += oPerson.sName;
+				};
+			}
 		}
 
 		private void DeactivateContent() 

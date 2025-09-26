@@ -29,6 +29,7 @@ namespace Datenbankanbindung
 				entity.Property(e => e.bIsRepeating);
 				entity.Property(e => e.nRepititionInterval);
 				entity.Property(e => e.sNameForRepitition);
+				entity.Property(e => e.sDescription);
 			});
 
 			modelBuilder.Entity<Participant>(entity =>

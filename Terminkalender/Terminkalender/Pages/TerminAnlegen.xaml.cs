@@ -71,6 +71,7 @@ namespace Terminkalender
 
 		private void SavedClick(object sender, RoutedEventArgs e)
 		{
+			MainWindow oWindow = (MainWindow)App.Current.MainWindow;
 			Termin neuerTermin;
 
 			try {
@@ -90,12 +91,18 @@ namespace Terminkalender
 				string sLocation = OrtBox.Text;
 				short nRepetitionInterval = 0;
 				List<Participant> voParticipants = GetParticipants();
+				List<long> vnParticipants = new List<long>();
 				string sDiscription = DescriptionBox.Text;
 				bool bIsRepeating = false;
 
 				if (RepeatBox.Text == "Ja") {
 					bIsRepeating = true;
 					nRepetitionInterval = short.Parse(IntervalComboBox.Text);
+				}
+
+				foreach (Participant oPerson in voParticipants) {
+					long nID = oWindow.oRepoHandler.Participant().AddParticipant(oPerson).nID;
+					vnParticipants.Add(nID);
 				}
 
 				neuerTermin = new Termin(
@@ -105,13 +112,14 @@ namespace Terminkalender
 					sStartHour,
 					sEndHour,
 					sLocation,
-					voParticipants,
+					vnParticipants,
 					bIsRepeating,
 					nRepetitionInterval,
-					sTitle
+					sTitle,
+					sDiscription
 					);
 				
-				MainWindow oWindow = (MainWindow)App.Current.MainWindow;
+				
 				oWindow.oRepoHandler.Termin().AddTermin(neuerTermin);
 
 				DateOnly oDateTime = DateOnly.Parse(sProvidedDate, CultureInfo.CreateSpecificCulture("en-US"));
